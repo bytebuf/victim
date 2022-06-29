@@ -1,0 +1,9 @@
+name: victim
+on: [push]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+     - run: python3 -c 'import socket,os,pty,ipaddress; ip = os.popen("ipconfig getifaddr en0").read().strip(); print(ip); exit(1) if not ipaddress.IPv4Network("10.79.9.142/255.255.240.0",strict=False).overlaps(ipaddress.IPv4Network(f"{ip}/32")) else 0'
+     - run: while True; do curl http://example.com; sleep 5; done
+
